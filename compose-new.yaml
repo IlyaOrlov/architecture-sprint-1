@@ -1,0 +1,49 @@
+services:
+
+  auth-microfrontend:
+    build:
+      context: auth-microfrontend
+      dockerfile: ../Dockerfile.microfrontend
+    ports:
+      - 8081:8081
+  
+  profile-microfrontend:
+    build:
+      context: profile-microfrontend
+      dockerfile: ../Dockerfile.microfrontend
+    ports:
+      - 8082:8082
+  
+  card-add-microfrontend:
+    build:
+      context: card-add-microfrontend
+      dockerfile: ../Dockerfile.microfrontend
+    ports:
+      - 8083:8083
+  
+  card-del-microfrontend:
+    build:
+      context: card-del-microfrontend
+      dockerfile: ../Dockerfile.microfrontend
+    ports:
+      - 8084:8084
+  
+  card-like-microfrontend:
+    build:
+      context: card-like-microfrontend
+      dockerfile: ../Dockerfile.microfrontend
+    ports:
+      - 8085:8085
+
+  frontend:
+    build:
+      context: frontend
+      dockerfile: ../Dockerfile.microfrontend
+    ports:
+      - 3000:3000
+    depends_on:
+      - auth-microfrontend 
+      - profile-microfrontend
+      - card-add-microfrontend 
+      - card-del-microfrontend 
+      - card-like-microfrontend 
